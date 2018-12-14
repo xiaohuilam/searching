@@ -1,0 +1,6 @@
+language: php
+php:
+  - '7.2.8'
+install:
+   - composer install
+script: ./vendor/phpunit/phpunit/phpunit && ./vendor/squizlabs/php_codesniffer/bin/phpcs
