@@ -15,7 +15,6 @@ class FeatureTest extends TestCase
      */
     public function testRoute()
     {
-        $this->artisan('route:list', ['--name' => 'searching'])->assertExitCode(0);
         $this->assertNotEmpty(route('searching'));
     }
 
