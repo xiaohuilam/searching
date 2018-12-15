@@ -5,7 +5,7 @@ install:
   - composer install
 script:
   - ./vendor/squizlabs/php_codesniffer/bin/phpcs
-  - for file in $(find ./src -type f)
-    do
-      php -l $file
-    done
+  - for file in $(find ./src -type f);
+    do;
+      php -l $file;
+    done;
