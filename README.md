@@ -9,7 +9,6 @@ Laravel 顶级搜索功能
 composer require xiaohuilam/searching
 ```
 
-如果你是 laravel 5.5 以下版本，需要手工注册服务提供者： 
 打开 `config/app.php`，在 `providers` 添加如下
 ```php
 "providers" => [

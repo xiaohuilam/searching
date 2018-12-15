@@ -44,7 +44,7 @@ class Article extends BaseModel implements SearchingInterface
      *
      * @return CategoryNamePrototype
      */
-    public static function getSearchableCategoryName() : CategoryNamePrototype
+    public static function getSearchableCategoryName()
     {
         return new CategoryNamePrototype('公告');
     }
@@ -54,7 +54,7 @@ class Article extends BaseModel implements SearchingInterface
      *
      * @return ColumnsPrototype
      */
-    public static function getSearchableColumns() : ColumnsPrototype
+    public static function getSearchableColumns()
     {
         return new ColumnsPrototype('title', 'content');
     }
@@ -64,7 +64,7 @@ class Article extends BaseModel implements SearchingInterface
      *
      * @return ShortcutsPrototype
      */
-    public static function getSearchableShortcuts() : ShortcutsPrototype
+    public static function getSearchableShortcuts()
     {
         return new ShortcutsPrototype('xw', 'gg', 'wz');
     }
@@ -74,7 +74,7 @@ class Article extends BaseModel implements SearchingInterface
      *
      * @return CategoryUrlPrototype
      */
-    public static function getSearchableCategoryUrl() : CategoryUrlPrototype
+    public static function getSearchableCategoryUrl()
     {
         return new CategoryUrlPrototype('article.index');
     }
@@ -84,7 +84,7 @@ class Article extends BaseModel implements SearchingInterface
      *
      * @return CategoryUrlPrototype
      */
-    public function getSearchableUrl() : UrlPrototype
+    public function getSearchableUrl()
     {
         return new UrlPrototype('article.show', $this);
     }
