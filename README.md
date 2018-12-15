@@ -2,6 +2,7 @@
 
 Laravel 顶级搜索功能
 
+[![Build Status](https://travis-ci.com/xiaohuilam/searching.svg?branch=master)](https://travis-ci.com/xiaohuilam/searching)
 
 ## Install
 
