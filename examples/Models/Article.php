@@ -82,7 +82,7 @@ class Article extends BaseModel implements SearchingInterface
     /**
      * 模型详情路由
      *
-     * @return CategoryUrlPrototype
+     * @return UrlPrototype
      */
     public function getSearchableUrl()
     {
