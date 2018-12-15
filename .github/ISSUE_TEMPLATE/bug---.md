@@ -23,7 +23,7 @@ assignees: xiaohuilam
 **截图**
 如果可以，尽可能截图
 
-**环境 (please complete the following information):**
+**环境 (please complete the following information):**
  - PHP版本: [e.g. 7.2.8]
  - 操作系统 [e.g. Mac OS X El Captain 10.3]
 
