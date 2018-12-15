@@ -25,8 +25,8 @@ class FeatureTest extends TestCase
      */
     public function testSearch()
     {
-        $json = $this->call('GET', 'searching')->getOriginalContent();
-        $this->assertArrayHasKey('success', $json);
+        $json = $this->call('GET', 'searching')->getData();
+        $this->assertObjectHasAttribute('success', $json);
         $this->assertTrue(data_get($json, 'success'));
     }
 }
