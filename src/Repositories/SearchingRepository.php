@@ -89,7 +89,7 @@ class SearchingRepository
 
         $data = collect([]);
         $count = 0;
-        $this->models = config('search.models');
+        $this->models = config('search.models', []);
         if (data_get($search, 'models')) {
             $this->models = data_get($search, 'models');
         }
