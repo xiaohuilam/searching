@@ -6,6 +6,7 @@ Laravel 顶级搜索功能
 
 ## Install
 
+请使用 composer 安装
 ```bash
 composer require xiaohuilam/searching
 ```
@@ -26,6 +27,7 @@ php artisan vendor:publish --tag=searching
 
 ## Configuration
 
+### 声明模型
 修改 `config/search.php`
 
 ```php
@@ -38,13 +40,25 @@ return [
 ];
 ```
 
+### 模型改造
 打开 `app/Models/User.php`，按照 `examples/Models/Article.php` 的方式实现 `Searching\Interfaces\SearchingInterface` 接口，并加好如下方法（具体用途请参照 `SearchingInterface` 注释）
 
- * getSearchableCategoryName
- * getSearchableColumns
- * getSearchableShortcuts
- * getSearchableCategoryUrl
- * getSearchableUrl
+ * [getSearchableCategoryName()](https://github.com/xiaohuilam/searching/blob/master/src/Interfaces/SearchingInterface.php#L22-L27)
+ * [getSearchableColumns()](https://github.com/xiaohuilam/searching/blob/master/src/Interfaces/SearchingInterface.php#L29-L34)
+ * [getSearchableShortcuts()](https://github.com/xiaohuilam/searching/blob/master/src/Interfaces/SearchingInterface.php#L36-L41)
+ * [getSearchableCategoryUrl()](https://github.com/xiaohuilam/searching/blob/master/src/Interfaces/SearchingInterface.php#L43-L48)
+ * [getSearchableUrl()](https://github.com/xiaohuilam/searching/blob/master/src/Interfaces/SearchingInterface.php#L50-L55)
+
+### 模板引入
+，在你的导航条中，加入 `@include('layouts.search')`
+```html
+<ul class="nav navbar-nav">
+    <li class="{{is('home', 'active')}}"><a href="{{ route('home') }}">首页</a></li>
+    <!-- 原有的导航 -->
+    @include('layouts.search')
+</ul>
+```
+
 
 ## Demo
 
