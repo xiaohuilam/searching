@@ -2,8 +2,9 @@
 namespace Searching\Http\Controllers;
 
 use Searching\Repositories\SearchingRepository;
+use Illuminate\Routing\Controller;
 
-class SearchingController
+class SearchingController extends Controller
 {
     /**
      * 存储器
