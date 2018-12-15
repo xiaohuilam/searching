@@ -92,7 +92,6 @@
     </rule>
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
     <file>src</file>
-    <file>tests</file>
     <exclude-pattern>*/app/DataTable/*</exclude-pattern>
     <exclude-pattern>*/.vscode/*</exclude-pattern>
     <exclude-pattern>*/angular/*</exclude-pattern>
