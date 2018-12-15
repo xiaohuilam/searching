@@ -51,7 +51,7 @@ return [
  * [getSearchableUrl()](https://github.com/xiaohuilam/searching/blob/master/src/Interfaces/SearchingInterface.php#L50-L55)
 
 ### 模板引入
-，在你的导航条中，加入 `@include('layouts.search')`
+在你的导航条中，加入 `@include('layouts.search')`
 ```html
 <ul class="nav navbar-nav">
     <li class="{{is('home', 'active')}}"><a href="{{ route('home') }}">首页</a></li>
