@@ -24,6 +24,6 @@ class SearchingController
      */
     public function index()
     {
-        return $this->repository->list(request()->input('search'));
+        return $this->repository->search(request()->input('search'));
     }
 }

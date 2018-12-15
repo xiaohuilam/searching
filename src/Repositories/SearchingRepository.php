@@ -83,7 +83,7 @@ class SearchingRepository
      * @param  array  $search
      * @return \Illuminate\Http\JsonResponse
      */
-    public function list($search = [])
+    public function search($search = [])
     {
         $keyword = data_get($search, 'keyword');
 
