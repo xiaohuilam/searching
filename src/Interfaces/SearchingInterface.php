@@ -1,43 +1,56 @@
 <?php
 namespace Searching\Interfaces;
 
+use Searching\Prototypes\CategoryNamePrototype;
+use Searching\Prototypes\ColumnsPrototype;
+use Searching\Prototypes\ShortcutsPrototype;
+use Searching\Prototypes\CategoryUrlPrototype;
+use Searching\Prototypes\UrlPrototype;
+
 /**
  * 搜索接口
  */
 interface SearchingInterface
 {
     /**
+     * 主键ID，限制本接口只可以在model使用
+     *
+     * @return mixed
+     */
+    public function getKey();
+
+    /**
      * 获取搜索组名
      *
-     * @return string
+     * @return CategoryNamePrototype
      */
-    public static function getSearchableCategoryName();
+    public static function getSearchableCategoryName() : CategoryNamePrototype;
 
     /**
      * 获取可被搜索的字段
      *
-     * @return \Illuminate\Support\Collection|array
+     * @return ColumnsPrototype
      */
-    public static function getSearchableColumns();
+    public static function getSearchableColumns() : ColumnsPrototype;
 
     /**
      * 获取搜索分组快捷键
      *
-     * @return \Illuminate\Support\Collection|array
+     * @return ShortcutsPrototype
      */
-    public static function getSearchableShortcuts();
+    public static function getSearchableShortcuts() : ShortcutsPrototype;
 
     /**
      * 模型列表路由
      *
-     * @return string
+     * @return CategoryUrlPrototype
      */
-    public static function getSearchableCategoryUrl();
+    public static function getSearchableCategoryUrl() : CategoryUrlPrototype;
 
     /**
      * 模型详情路由
      *
-     * @return string
+     * @return CategoryUrlPrototype
      */
-    public function getSearchableUrl();
+    public function getSearchableUrl() : UrlPrototype;
 }

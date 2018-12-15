@@ -60,9 +60,9 @@ class SearchingRepository
         $keywords = explode(':', $keyword);
         $keyword = $keywords[0];
 
-        $category_name = $model::getSearchableCategoryName();
+        $category_name = (string) $model::getSearchableCategoryName();
         $list = collect([]);
-        if (in_array(strtolower($keyword), $model::getSearchableShortcuts())) {
+        if (collect((array) $model::getSearchableShortcuts())->contains($keyword)) {
             $item = new $model();
             $item->title = '以下搜索的是: ' . $category_name;
             $item->name = $category_name;
@@ -97,7 +97,7 @@ class SearchingRepository
         $list = collect([]);
 
         foreach ($this->models as $model) {
-            $category_name = $model::getSearchableCategoryName();
+            $category_name = (string) $model::getSearchableCategoryName();
 
             $fillable = app($model)->getFillable();
             $searches = $model::getSearchableColumns();
@@ -111,13 +111,13 @@ class SearchingRepository
             $list->transform(
                 function (SearchingInterface $item) use ($searches) {
                     $route = $item::getModelNameLower();
-                    $item->title = data_get($item, data_get($searches, '0'));
-                    $item->description = data_get($item, data_get($searches, '1'));
+                    $item->title = data_get($item, $searches['title']);
+                    $item->description = data_get($item, $searches['description']);
 
-                    if (data_get($item, 'id')) {
-                        $item->link = $item->getSearchableUrl();
+                    if ($item->getKey()) {
+                        $item->link = (string) $item->getSearchableUrl();
                     } else {
-                        $item->link = $item::getSearchableCategoryUrl();
+                        $item->link = (string) $item::getSearchableCategoryUrl();
                     }
                     $item->description = Str::limit($item->description, 90);
 

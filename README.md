@@ -7,6 +7,20 @@ Laravel 顶级搜索功能
 
 ```bash
 composer require xiaohuilam/searching
+```
+
+如果你是 laravel 5.5 以下版本，需要手工注册服务提供者： 
+打开 `config/app.php`，在 `providers` 添加如下
+```php
+"providers" => [
+    // ...
+    // 你原先 providers 的后面加下面这一行
+    Searching\Providers\SearchingServiceProvider::class,
+]
+```
+
+发布配置文件、搜索框模板和 js
+```
 php artisan vendor:publish --tag=searching
 ```
 
@@ -24,71 +38,14 @@ return [
 ];
 ```
 
-打开 `app/Models/User.php`
-```php
-<?php
-namespace App\Models;
+打开 `app/Models/User.php`，按照 `examples/Models/Article.php` 的方式实现 `Searching\Interfaces\SearchingInterface` 接口，并加好如下方法（具体用途请参照 `SearchingInterface` 注释）
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Searching\Interfaces\SearchingInterface;
-
-class User extends Authenticatable implements SearchingInterface
-{
-    //...
-
-
-    /**
-     * 获取搜索组名
-     *
-     * @return string
-     */
-    public static function getSearchableCategoryName()
-    {
-        return '用户'; // 在搜索框左边类目显示
-    }
-
-    /**
-     * 获取可被搜索的字段
-     *
-     * @return \Illuminate\Support\Collection|Countable|array
-     */
-    public static function getSearchableColumns()
-    {
-        return ['name', 'email']; // 可被搜索的字段
-    }
-
-    /**
-     * 获取搜索分组快捷键
-     *
-     * @return \Illuminate\Support\Collection|Countable|array
-     */
-    public static function getSearchableShortcuts()
-    {
-        return ['yh', 'zh', 'gly']; // 简短词
-    }
-
-    /**
-     * 模型详情路由
-     *
-     * @return string
-     */
-    public function getSearchableUrl()
-    {
-        return route('user.show', $this); // 单个结果的URL
-    }
-
-    /**
-     * 模型列表路由
-     *
-     * @return string
-     */
-    public static function getSearchableCategoryUrl()
-    {
-        return route('user.index'); // 分类URL
-    }
-}
-```
+ * getSearchableCategoryName
+ * getSearchableColumns
+ * getSearchableShortcuts
+ * getSearchableCategoryUrl
+ * getSearchableUrl
 
 ## Demo
 
-![demo.png](https://wantu-kw0-asset007-hz.oss-cn-hangzhou.aliyuncs.com/FBARMfQr491s61WNxUB.png)
+![demo.png](https://i.loli.net/2018/12/15/5c14e92b743c4.png)
