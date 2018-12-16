@@ -9,6 +9,10 @@ use Searching\Prototypes\UrlPrototype;
 
 /**
  * 搜索接口
+ *
+ * @property string $title       抬头
+ * @property string $description 描述
+ * @property string $link        连接
  */
 interface SearchingInterface
 {
@@ -18,6 +22,14 @@ interface SearchingInterface
      * @return mixed
      */
     public function getKey();
+
+    /**
+     * Set the visible attributes for the model.
+     *
+     * @param  array  $visible
+     * @return $this
+     */
+    public function setVisible(array $visible);
 
     /**
      * 获取搜索组名

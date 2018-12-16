@@ -9,7 +9,7 @@ class ShortcutsPrototype extends BasePrototype
     /**
      * 设置可被搜索字段
      *
-     * @param array $shortcuts
+     * @param string ...$shortcuts
      */
     public function __construct(...$shortcuts)
     {

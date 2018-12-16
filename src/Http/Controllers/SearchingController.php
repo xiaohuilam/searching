@@ -1,9 +1,9 @@
 <?php
 namespace Searching\Http\Controllers;
 
-use Searching\Repositories\SearchingRepository;
-use Illuminate\Routing\Controller;
 use App\Http\Requests\SearchingRequest;
+use Illuminate\Routing\Controller;
+use Searching\Repositories\SearchingRepository;
 
 class SearchingController extends Controller
 {
@@ -26,6 +26,10 @@ class SearchingController extends Controller
      */
     public function index(SearchingRequest $request)
     {
-        return $this->repository->search($request->input('search'));
+        /**
+         * @var array
+         */
+        $search = $request->input('search');
+        return $this->repository->search($search);
     }
 }
