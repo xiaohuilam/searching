@@ -7,7 +7,11 @@
     </div>
 </li>
 
-@push('script')
+@section('seaching-js')
 <script>window.search_url = '{{route("searching")}}';</script>
-<script src="{{ asset('js/searching.js') }}" defer></script>
+<script src="{{ asset('js/searching.js') }}" defer></script>    
+@endsection
+
+@push('script')
+@yield('seaching-js')
 @endpush
