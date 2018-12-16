@@ -59,6 +59,28 @@ return [
 </ul>
 ```
 
+在 `resources/views/layouts/search.blade.php` 中的
+```blade
+@push('script')
+...
+@endpush
+```
+
+所以请为了保证 js 能正常加载, 确认你的顶级模板会在 `</body>` 前
+```blade
+@stack('script)
+```
+
+
+### 权限检查
+打开 `app/Http/Requests/SearchingRequest.php`, 修改
+
+```php
+public function authorize()
+{
+    return true; // 返回 `true` 时候表示可以搜索
+}
+```
 
 ## Demo
 
