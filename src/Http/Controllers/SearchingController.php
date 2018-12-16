@@ -3,6 +3,7 @@ namespace Searching\Http\Controllers;
 
 use Searching\Repositories\SearchingRepository;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\SearchingRequest;
 
 class SearchingController extends Controller
 {
@@ -23,8 +24,8 @@ class SearchingController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(SearchingRequest $request)
     {
-        return $this->repository->search(request()->input('search'));
+        return $this->repository->search($request->input('search'));
     }
 }
