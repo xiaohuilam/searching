@@ -2,16 +2,9 @@
 
 namespace Searching\Repositories;
 
-use App\Models\Product;
-use App\Models\User;
-use App\Models\Article;
-use App\Models\Guestbook;
-use App\Models\Slide;
-use App\Models\SiteConfig;
-use App\Repositories\Abstracts\BaseRepository;
+use Searching\Interfaces\SearchingInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Searching\Interfaces\SearchingInterface;
 
 /**
  * 检索
@@ -28,15 +21,15 @@ class SearchingRepository
     /**
      * 搜索 Model::SHORTCUT
      *
-     * @param  string $keyword
-     * @param  \Searching\Interfaces\SearchingInterface|\Illuminate\Database\Eloquent\Model|string $model
+     * @param  string                                   $keyword
+     * @param  \Searching\Interfaces\SearchingInterface $model
      * @return \Illuminate\Support\Collection
      */
     protected function shortcut($keyword, $model)
     {
-        $category_name = constant($model . '::CATEGORY');
+        $category_name = (string) $model::getSearchableCategoryName();
         $list = collect([]);
-        if (in_array(strtolower($keyword), $model::getSearchableShortcuts())) {
+        if (in_array(strtolower($keyword), (array) $model::getSearchableShortcuts())) {
             $item = new $model();
             $item->title = $category_name;
             $item->name = $category_name;
@@ -51,8 +44,8 @@ class SearchingRepository
     /**
      * 搜索 Model::SHORTCUT
      *
-     * @param  string $keyword
-     * @param  \Searching\Interfaces\SearchingInterface|\Illuminate\Database\Eloquent\Model|string $model
+     * @param  string                                   $keyword
+     * @param  \Searching\Interfaces\SearchingInterface $model
      * @return \Illuminate\Support\Collection
      */
     protected function categorySearch($keyword, $model)
@@ -68,10 +61,10 @@ class SearchingRepository
             $item->name = $category_name;
             $item->description = $category_name;
             $item->id = 0;
-            $item->link = route($model::getModelNameLower() . '.index');
+            $item->link = (string) $item::getSearchableCategoryUrl();
             $list->push($item);
 
-            $content = $this->list(['keyword' => data_get($keywords, 1), 'models' => [$model, ]])->getOriginalContent();
+            $content = $this->search(['keyword' => data_get($keywords, 1), 'models' => [$model, ]])->getOriginalContent();
             $list = $list->merge(data_get($content, 'data.' . $category_name));
         }
         return $list;
@@ -80,7 +73,7 @@ class SearchingRepository
     /**
      * 列表
      *
-     * @param  array  $search
+     * @param  array $search
      * @return \Illuminate\Http\JsonResponse
      */
     public function search($search = [])
@@ -101,6 +94,10 @@ class SearchingRepository
 
             $fillable = app($model)->getFillable();
             $searches = $model::getSearchableColumns();
+
+            /**
+             * @var \Illuminate\Database\Query\Builder
+             */
             $query = new $model;
 
             foreach ($searches as $column) {
@@ -110,7 +107,6 @@ class SearchingRepository
             $list = $query->take(10)->get();
             $list->transform(
                 function (SearchingInterface $item) use ($searches) {
-                    $route = $item::getModelNameLower();
                     $item->title = data_get($item, $searches['title']);
                     $item->description = data_get($item, $searches['description']);
 
