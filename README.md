@@ -71,7 +71,7 @@ return [
 ```blade
 @stack('script)
 ```
-
+如果你使用的 laravel 5.1 以下版本，blade 是不支持 stack 指令的，请自行引入 js/search.js。
 
 ### 权限检查
 打开 `app/Http/Requests/SearchingRequest.php`, 修改
