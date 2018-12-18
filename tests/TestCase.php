@@ -25,6 +25,12 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app->config->set('app.key', 'base64:' . base64_encode(Encrypter::generateKey('AES-256-CBC')));
+        if (method_exists(Encrypter::class, 'generateKey')) {
+            $key = 'base64:' . base64_encode(Encrypter::generateKey('AES-256-CBC'));
+        } else {
+            $key = Str::random(32);
+        }
+
+        $app->config->set('app.key', $key);
     }
 }
