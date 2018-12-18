@@ -5,6 +5,7 @@ namespace Searching\Tests;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Searching\Providers\SearchingServiceProvider;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Str;
 
 /**
  * 测试用例抽象类
