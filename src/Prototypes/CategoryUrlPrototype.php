@@ -11,7 +11,7 @@ class CategoryUrlPrototype extends BasePrototype
      *
      * @param string $alias 路由别名
      */
-    public function __construct(string $alias)
+    public function __construct($alias)
     {
         $this->offsetSet('url', route($alias));
     }
