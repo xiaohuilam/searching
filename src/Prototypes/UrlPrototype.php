@@ -14,7 +14,7 @@ class UrlPrototype extends BasePrototype
      * @param string $alias 路由别名
      * @param SearchingInterface $model 扔给路由的模型
      */
-    public function __construct(string $alias, SearchingInterface $model)
+    public function __construct($alias, SearchingInterface $model)
     {
         $this->offsetSet('url', route($alias, $model));
     }
