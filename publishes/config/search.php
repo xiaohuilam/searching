@@ -8,4 +8,8 @@ return [
     'models' => [
         // App\Models\User::class,
     ],
+    'route' => [
+        // search路由前缀
+        'prefix' => null,
+    ],
 ];
