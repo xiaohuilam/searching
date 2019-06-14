@@ -78,7 +78,7 @@ return [
 所以请为了保证 js 能正常加载, 确认你的顶级模板会在 `</body>` 前 (stack 只有 laravel5.2+ 支持)
 
 ```blade
-@stack('script)
+@stack('script')
 ```
 
 如果你使用的 laravel 5.1 以下版本，请手工添加

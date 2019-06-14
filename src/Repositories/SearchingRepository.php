@@ -57,7 +57,7 @@ class SearchingRepository
         $list = collect([]);
         if (collect((array) $model::getSearchableShortcuts())->contains($keyword)) {
             $item = new $model();
-            $item->title = '以下搜索的是: ' . $category_name;
+            $item->title = trans('searching.category_tip', ['category' => $category_name]);
             $item->name = $category_name;
             $item->description = $category_name;
             $item->id = 0;
